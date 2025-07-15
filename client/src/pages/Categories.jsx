@@ -1,10 +1,11 @@
 import React from 'react'
+import CategoriesSection from '../components/CategoriesSection'
 
 const Categories = () => {
   return (
-    <div>
-      Categories
-    </div>
+    <>
+        <CategoriesSection/>
+    </>
   )
 }
 
