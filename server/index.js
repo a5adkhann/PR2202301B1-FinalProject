@@ -34,11 +34,6 @@ app.post("/addcategory", upload.single('categoryImage'), async (request, respons
 })
 
 
-
-
-
-
-
 app.listen(2000, () => {
     console.log("Server Started");
 })
