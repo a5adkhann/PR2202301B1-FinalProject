@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { BellIcon, ChevronDownIcon, Bars3Icon } from '@heroicons/react/24/outline'
-const TopNavbar = () => {
+const TopNavbar = ({logoutUser}) => {
   const [userMenuOpen, setUserMenuOpen] = useState(false)
 
   return (
@@ -39,7 +39,7 @@ const TopNavbar = () => {
               <div className="absolute right-0 mt-2 w-48 bg-white border rounded shadow-lg">
                 <a href="#" className="block px-4 py-2 hover:bg-gray-100">Profile</a>
                 <a href="#" className="block px-4 py-2 hover:bg-gray-100">Settings</a>
-                <a href="#" className="block px-4 py-2 hover:bg-gray-100">Logout</a>
+                <button className="block px-4 py-2 hover:bg-gray-100 w-[100%] text-left" onClick={logoutUser}>Logout</button>
               </div>
             )}
           </div>

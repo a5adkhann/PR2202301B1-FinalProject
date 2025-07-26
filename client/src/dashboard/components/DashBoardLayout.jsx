@@ -3,7 +3,7 @@ import Sidebar from './Sidebar'
 import TopNavbar from './TopNavbar'
 import { Outlet } from 'react-router-dom'
 
-const DashBoardLayout = () => {
+const DashBoardLayout = ({logoutUser}) => {
   const [sidebarOpen, setSidebarOpen] = useState(true)
 
   return (
@@ -17,7 +17,7 @@ const DashBoardLayout = () => {
 
       {/* Main section */}
       <div className="flex flex-col flex-1">
-        <TopNavbar toggleSidebar={() => setSidebarOpen(!sidebarOpen)} />
+        <TopNavbar logoutUser={logoutUser} toggleSidebar={() => setSidebarOpen(!sidebarOpen)} />
         <main className="flex-1 overflow-auto bg-gray-50 p-4">
           <Outlet />
         </main>

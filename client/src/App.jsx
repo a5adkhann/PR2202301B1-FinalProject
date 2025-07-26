@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import AppLayout from '../src/AppLayout'
 import Home from './pages/Home'
 import Categories from './pages/Categories'
@@ -12,8 +12,22 @@ import AddProduct from './dashboard/components/pages/AddProduct'
 import ViewProduct from './dashboard/components/pages/ViewProduct'
 import Register from './pages/Register'
 import Login from './pages/Login'
+import { useState } from 'react'
 
 const App = () => {
+
+  const [user, setUser] = useState(localStorage.getItem("user") || "");
+
+  const loginUser = (data) => {
+    localStorage.setItem("user", JSON.stringify(data));
+    setUser(data);
+  }
+
+  const logoutUser = () => {
+    localStorage.removeItem("user");
+    setUser("");
+  }
+
   return (
     <>
      <BrowserRouter>
@@ -24,7 +38,7 @@ const App = () => {
          <Route path='/products' element={<Products/>}></Route>
         </Route>
 
-      <Route path="dashboard" element={<DashBoardLayout />}>
+      <Route path="dashboard" element={ user ? <DashBoardLayout logoutUser={logoutUser}/> : <Navigate to="/login"/>}>
       <Route path="sidebar" element={<Sidebar />} />
       <Route path="topnavbar" element={<TopNavbar />} />
       <Route path="addcategory" element={<AddCategory />} />
@@ -34,7 +48,7 @@ const App = () => {
      </Route>
 
        <Route path='/register' element={<Register/>}></Route>
-      <Route path='/login' element={<Login/>}></Route>
+      <Route path='/login' element={<Login loginUser={loginUser} />}></Route>
       </Routes>
      </BrowserRouter>
     </>

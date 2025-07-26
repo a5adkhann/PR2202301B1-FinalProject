@@ -108,6 +108,28 @@ app.post("/register", async(request, response) => {
 })
 
 
+app.post("/login", async(request, response) => {
+        const {email, password} = request.body;
+
+        const registeredUser = await Registeration.findOne({email: email});
+        console.log(registeredUser);
+        if(registeredUser){
+            const isMatch = await bcrypt.compare(password, registeredUser.password);
+            if(isMatch){
+                response.status(200).send({message: "Logged in successfully", registeredUser});
+            }
+            else {
+                response.status(200).send({message: "Incorrect Credentials"});
+            }
+        }
+        else {
+            response.status(200).send({message: "User don't exist"});
+        }
+})
+
+
+
+
 app.listen(2000, () => {
     console.log("Server Started");
 })
