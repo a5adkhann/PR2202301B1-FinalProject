@@ -93,6 +93,15 @@ app.delete("/deleteCategory/:id" , async(request , response) =>{
    }
 })
 
+app.delete("/deleteProduct/:id" , async(request , response) =>{
+    const id = request.params.id;
+   try{
+     await Products.deleteOne({_id : id});
+     response.status(200).send({message : "product deleted successfully"});
+   }catch(error){
+      console.log(error);
+   }
+})
 
 app.post("/register", async(request, response) => {
     try {

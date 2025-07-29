@@ -35,6 +35,8 @@ const ProductsSection = () => {
                 <div className="product-text p-3">
                     <p>{product.product_Name}</p>
                     <p>{product.product_Price}</p>
+
+                    <button className="btn btn-soft btn-primary">Add To Cart</button>
                 </div>
             </div>
             ))}
