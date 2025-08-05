@@ -13,6 +13,7 @@ import ViewProduct from './dashboard/components/pages/ViewProduct'
 import Register from './pages/Register'
 import Login from './pages/Login'
 import { useState } from 'react'
+import Cart from './pages/Cart'
 
 const App = () => {
 
@@ -36,6 +37,7 @@ const App = () => {
         <Route path='/' element={<Home/>}></Route>     
          <Route path='/categories' element={<Categories/>}></Route>
          <Route path='/products' element={<Products/>}></Route>
+         <Route path='/cart' element={<Cart/>}></Route>
         </Route>
 
       <Route path="dashboard" element={ user ? <DashBoardLayout logoutUser={logoutUser}/> : <Navigate to="/login"/>}>

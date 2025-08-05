@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { cartContext } from './CartContext';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { cart } = useContext(cartContext);
 
   return (
     <nav className="bg-white shadow-md fixed top-0 left-0 right-0 z-50 mb-4">
@@ -19,6 +21,7 @@ const Navbar = () => {
             <Link to="/categories" className="block text-gray-700 hover:text-blue-600">Categories</Link>
             <Link to="/products" className="block text-gray-700 hover:text-blue-600">Products</Link>
             <Link to="/dashboard" className="block text-gray-700 hover:text-blue-600">Dashboard</Link>
+            <Link to="/cart" className="block text-gray-700 hover:text-blue-600">Cart ({cart.length}) </Link>
           </div>
 
           {/* Mobile Menu Button */}

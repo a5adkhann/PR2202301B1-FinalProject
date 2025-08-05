@@ -1,10 +1,13 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
+import { useContext } from 'react';
+import { cartContext } from './CartContext';
 
 
 const ProductsSection = () => {
 
   const[products , setProducts] = useState([]);
+  const { addToCart } = useContext(cartContext);
 
   const fetchProducts = async () =>{
        try{
@@ -20,8 +23,6 @@ const ProductsSection = () => {
     fetchProducts();
   }, []);
 
-
-  
   return (
    <>
      <div className='py-16 px-6 md:px-20'>
@@ -36,7 +37,7 @@ const ProductsSection = () => {
                     <p>{product.product_Name}</p>
                     <p>{product.product_Price}</p>
 
-                    <button className="btn btn-soft btn-primary">Add To Cart</button>
+                    <button className="btn btn-soft btn-primary" onClick={() => addToCart(product)}>Add To Cart</button>
                 </div>
             </div>
             ))}
