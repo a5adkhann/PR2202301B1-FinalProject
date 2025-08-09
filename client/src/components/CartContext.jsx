@@ -7,7 +7,23 @@ const CartProvider = ({children}) => {
     const [cart, setCart] = useState([]);
 
     const addToCart = (product) => {
-        setCart((prevCart) => [...prevCart, product]);
+        setCart((prevCart) => {
+            console.log(prevCart);
+            const existingItem = prevCart.find(item => item._id === product._id);
+            console.log(existingItem);
+
+            if(existingItem){
+              return prevCart.map(item => 
+                item._id === product._id ?
+                {...item, quantity: item.quantity + 1} 
+                :
+                item
+              ) 
+            }
+            else {
+                return [...prevCart, {...product, quantity: 1}];
+            }
+        });
     }
 
     const removeFromCart = (id) => {

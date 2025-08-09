@@ -4,6 +4,7 @@ const connectDb = require("./config/db_connection");
 const Categories = require("./models/categoriesModel");
 const Products = require("./models/productsModel");
 const Registeration = require("./models/registerationsModel");
+const Orders = require("./models/orderswModel");
 const multer = require("multer");
 const path = require("path");
 const cors = require("cors");
@@ -134,6 +135,18 @@ app.post("/login", async(request, response) => {
         else {
             response.status(200).send({message: "User don't exist"});
         }
+})
+
+app.post("/neworder", async(request, response) => {
+    try {
+        const { orders } = request.body;
+
+        await Orders.insertMany({ product_name: orders.pName, product_price: orders.pPrice, product_quanity: orders.pQuantity, total_amount: orders.total_amount });
+        response.status(200).send({message: "Order placed successfully"});
+    }
+    catch(err){
+        console.log(err);
+    }
 })
 
 
